@@ -1,0 +1,267 @@
+/**
+ * Modern Modality Selector Styles
+ * Animated cards with glassmorphism and hover effects
+ */
+
+.modality-selector {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.selector-header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.selector-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-extrabold);
+  margin-bottom: var(--space-3);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: var(--line-height-tight);
+}
+
+.selector-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Modality Cards Grid */
+.modality-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.modality-card {
+  position: relative;
+  padding: var(--space-8);
+  border: none;
+  border-radius: var(--radius-2xl);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  animation: scaleIn var(--duration-normal) ease-out both;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card Gradient Background */
+.card-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  opacity: 0.15;
+  transition: all var(--transition-base);
+  z-index: 0;
+}
+
+.modality-card:hover .card-gradient {
+  opacity: 0.25;
+  height: 100%;
+}
+
+/* Card Content */
+.card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+}
+
+.card-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+}
+
+.modality-card:hover .card-icon {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 8px 16px rgba(102, 126, 234, 0.3));
+}
+
+.card-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.card-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* Feature Tags */
+.card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.feature-tag {
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-base);
+}
+
+.modality-card:hover .feature-tag {
+  background: var(--bg-hover);
+  border-color: var(--primary-500);
+  transform: translateY(-2px);
+}
+
+/* Active State */
+.modality-card.active {
+  background: var(--glass-bg);
+  border: 2px solid var(--primary-500);
+  box-shadow: var(--shadow-glow-primary);
+  transform: translateY(-4px);
+}
+
+.modality-card.active .card-gradient {
+  opacity: 0.3;
+  height: 100%;
+}
+
+.modality-card.active .feature-tag {
+  background: var(--primary-500);
+  color: white;
+  border-color: var(--primary-600);
+}
+
+/* Active Indicator */
+.active-indicator {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 36px;
+  height: 36px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-lg);
+  animation: scaleIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 2;
+}
+
+/* Hover Glow Effect */
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  filter: blur(40px);
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.modality-card:hover .card-glow {
+  opacity: 0.1;
+}
+
+.modality-card.active .card-glow {
+  opacity: 0.15;
+}
+
+/* Hover Effects */
+.modality-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.modality-card:active {
+  transform: translateY(-4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .modality-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .selector-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .selector-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .selector-subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .modality-cards {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .modality-card {
+    padding: var(--space-6);
+    min-height: 240px;
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .card-title {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Focus States for Accessibility */
+.modality-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-500);
+}
+
+.modality-card:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .modality-card {
+    animation: none;
+  }
+
+  .modality-card:hover {
+    transform: none;
+  }
+
+  .card-icon,
+  .feature-tag {
+    transition: none;
+  }
+}
